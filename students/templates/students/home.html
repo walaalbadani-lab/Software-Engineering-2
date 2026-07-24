@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام الطلاب | الصفحة الرئيسية</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Tahoma, Arial, sans-serif;
+            background:
+                radial-gradient(circle at top right, #fce7f3 0, transparent 32%),
+                radial-gradient(circle at bottom left, #e0e7ff 0, transparent 35%),
+                #f8fafc;
+            color: #334155;
+            display: flex;
+            flex-direction: column;
+        }
+
+        nav {
+            width: 100%;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.82);
+            border-bottom: 1px solid #e2e8f0;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 21px;
+            font-weight: bold;
+            color: #7c3aed;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .nav-links a {
+            color: #64748b;
+            text-decoration: none;
+            padding: 9px 16px;
+            border-radius: 12px;
+            transition: 0.25s;
+        }
+
+        .nav-links a:hover,
+        .nav-links .active {
+            background: #f3e8ff;
+            color: #7c3aed;
+        }
+
+        main {
+            flex: 1;
+            width: min(1100px, 90%);
+            margin: auto;
+            padding: 55px 0;
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            align-items: center;
+            gap: 55px;
+        }
+
+        .welcome-tag {
+            display: inline-block;
+            background: #fdf2f8;
+            color: #db2777;
+            border: 1px solid #fbcfe8;
+            padding: 8px 15px;
+            border-radius: 30px;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: clamp(36px, 5vw, 62px);
+            line-height: 1.25;
+            color: #1e293b;
+            margin-bottom: 20px;
+        }
+
+        h1 span {
+            color: #8b5cf6;
+        }
+
+        .description {
+            max-width: 620px;
+            font-size: 18px;
+            line-height: 1.9;
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 13px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 13px 22px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.25s;
+        }
+
+        .primary {
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            color: white;
+            box-shadow: 0 12px 25px rgba(139, 92, 246, 0.23);
+        }
+
+        .primary:hover {
+            transform: translateY(-2px);
+        }
+
+        .secondary {
+            color: #7c3aed;
+            background: white;
+            border: 1px solid #ddd6fe;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid #e9d5ff;
+            border-radius: 28px;
+            padding: 34px;
+            box-shadow: 0 22px 55px rgba(100, 116, 139, 0.15);
+        }
+
+        .illustration {
+            width: 110px;
+            height: 110px;
+            margin: 0 auto 25px;
+            border-radius: 32px;
+            display: grid;
+            place-items: center;
+            font-size: 50px;
+            background: linear-gradient(135deg, #ede9fe, #fce7f3);
+        }
+
+        .card h2 {
+            text-align: center;
+            color: #334155;
+            margin-bottom: 8px;
+        }
+
+        .card > p {
+            text-align: center;
+            color: #94a3b8;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            }
+
+        .features {
+            display: grid;
+            gap: 12px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px;
+            border-radius: 15px;
+            background: #faf5ff;
+            color: #475569;
+        }
+
+        .feature-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            display: grid;
+            place-items: center;
+            background: white;
+            color: #8b5cf6;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 18px;
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        @media (max-width: 780px) {
+            nav {
+                padding: 15px 5%;
+            }
+
+            .nav-links {
+                gap: 5px;
+            }
+
+            .nav-links a {
+                padding: 8px 10px;
+                font-size: 14px;
+            }
+
+            main {
+                grid-template-columns: 1fr;
+                padding: 40px 0;
+                gap: 35px;
+            }
+
+            .intro {
+                text-align: center;
+            }
+
+            .description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .buttons {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">نظام الطلاب ✨</div>
+
+        <div class="nav-links">
+            <a href="{% url 'students:home' %}" class="active">الرئيسية</a>
+            <a href="{% url 'students:about' %}">عن المشروع</a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="intro">
+            <div class="welcome-tag">🌸 مشروع هندسة البرمجيات</div>
+
+            <h1>
+                أهلًا بك في<br>
+                <span>نظام الطلاب</span>
+            </h1>
+
+            <p class="description">
+                واجهة بسيطة ومرتبة تم إنشاؤها باستخدام Django،
+                لتقديم تجربة واضحة ولطيفة بعيدًا عن التعقيد والزحام.
+            </p>
+
+            <div class="buttons">
+                <a href="{% url 'students:about' %}" class="button primary">
+                    اكتشف المشروع
+                </a>
+
+                <a href="#features" class="button secondary">
+                    المميزات
+                </a>
+            </div>
+        </section>
+
+        <section class="card" id="features">
+            <div class="illustration">🎓</div>
+
+            <h2>بيئة تعليمية منظمة</h2>
+            <p>
+                مشروع تدريبي يوضح أساسيات إنشاء وربط صفحات Django.
+            </p>
+
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">✓</div>
+                    <span>تصميم هادئ وسهل الاستخدام</span>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">✓</div>
+                    <span>تنظيم واضح للصفحات والمسارات</span>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">✓</div>
+                    <span>متوافق مع شاشة الجوال والكمبيوتر</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        إعداد الطالبة: Wala Albadani 
+    </footer>
+</body>
+</html>
